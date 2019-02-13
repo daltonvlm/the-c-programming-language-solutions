@@ -1,3 +1,7 @@
+/*
+ * Modify the temperature conversion program to print a heading above the table.
+ */
+
 #include <stdio.h>
 
 /* print Fahrenheit-Celsius table

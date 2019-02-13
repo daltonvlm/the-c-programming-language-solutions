@@ -1,4 +1,9 @@
-#include <stdio.h>
+/*
+ * Write the function htoi(s), which converts a string of hexadecimal digits (in-
+ * cluding an optional 0x or 0X) into its equivalent integer value. The allowable
+ * digits are 0 through 9, a through f, and A through F.
+ */
+
 #include <ctype.h>
 
 int htoi(char s[])
@@ -18,10 +23,4 @@ int htoi(char s[])
 		}
 	}
 	return n;
-}
-
-main()
-{
-	printf("%d\n", htoi("0x10"));
-	return 0;
 }

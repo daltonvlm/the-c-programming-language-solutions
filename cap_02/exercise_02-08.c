@@ -1,4 +1,7 @@
-#include <stdio.h>
+/*
+ * Write a function righrot(x, n) that returns the value of the integer x rotated
+ * to the right by n bit positions.
+ */
 
 unsigned rightrot(unsigned x, int n)
 {
@@ -8,27 +11,4 @@ unsigned rightrot(unsigned x, int n)
 		x = (x >> 1) | ((x & 1) << ((sizeof(unsigned) * 8 - 1)));
 	}
 	return x;
-}
-
-void show_bits(unsigned x, long size)
-{
-	int i;
-
-	for (i = (size * 8) - 1; i >= 0; i--) {
-		printf("%d", x >> i & 1);
-	}
-	puts("");
-}
-
-main()
-{
-	unsigned x = 85;
-
-	show_bits(x, sizeof(unsigned));
-	while (1) {
-		x = rightrot(x, 1);
-		show_bits(x, sizeof(unsigned));
-		getchar();
-	}
-	return 0;
 }

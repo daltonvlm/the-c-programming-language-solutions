@@ -1,3 +1,7 @@
+/*
+ * Write a program tha prints its input one word per line.
+ */
+
 #include <stdio.h>
 
 #define IN 1        /* inside a word */

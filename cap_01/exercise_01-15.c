@@ -1,3 +1,8 @@
+/*
+ * Rewrite the temperature conversion program of Section 1.2 to use a function
+ * for conversion.
+ */
+
 #include <stdio.h>
 
 int fahr_celsius(int fahr);

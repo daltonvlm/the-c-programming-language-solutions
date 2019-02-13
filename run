@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CC="cc -ansi -pedantic"
+CC="cc -ansi -pedantic -lm"
 
 run() {
 	if [ $# -gt 0 ]; then
 		FILE=$1
 		if [ -f $FILE ]; then
-			echo Running $FILE:
+			echo $CC $FILE
 			$CC $FILE && ./a.out
 		else
 			echo $FILE not found
