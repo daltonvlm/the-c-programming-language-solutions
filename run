@@ -1,27 +1,23 @@
 #!/bin/bash
 
-CC="cc -ansi -pedantic -lm"
+CC="cc -ansi -pedantic"
 
 run() {
 	if [ $# -gt 0 ]; then
-		FILE=$1
-		if [ -f $FILE ]; then
-			echo $CC $FILE
-			$CC $FILE && ./a.out
-		else
-			echo $FILE not found
-			exit 1
-		fi
+		RUN=$CC
+		for FILE in $@; do
+			FILE="$FILE.c"
+			[ -f "$FILE" ] && RUN="$RUN $FILE" || echo "$FILE not found"
+		done
+		[ "$RUN" != "$CC" ] && $RUN -lm && ./a.out
 	fi
 }
 
 main() {
 	if [ $# -gt 0 ]; then
-		for FILE in $@; do
-			run $FILE
-		done
+		run $@
 	else
-		run main.c
+		run "test"
 	fi
 	[ -f a.out ] && rm a.out
 }
