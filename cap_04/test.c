@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "calc.h"
+
+#define NUMBER '0'
+
+int getch(void);
+void ungetch(int);
 
 /* getop: get next operator or numeric operand */
-int getop(char s[])
+int getop(char s[], int lim)
 {
     int i, c;
+
+    if (lim < 2) {
+        printf("getop: insufficient storage space (minimum is 2)\n");
+        return EOF;
+    }
 
     while ((s[0] = c = getch()) == ' ' ||  c == '\t')
         ;
@@ -14,14 +23,13 @@ int getop(char s[])
         return c;       /* not a number */
     i = 0;
     if (isdigit(c))     /* collect integer part */
-        while (isdigit(s[++i] = c = getch()))
+        while (isdigit(s[++i] = c = getch()) && i < lim - 1)
             ;
-    if (c == '.')       /* collect fraction part */
-        while (isdigit(s[++i] = c = getch()))
+    if (i < lim - 1 && c == '.')       /* collect fraction part */
+        while (isdigit(s[++i] = c = getch()) && i < lim - 1)
             ;
     s[i] = '\0';
     if (c != EOF)
         ungetch(c);
     return NUMBER;
 }
-

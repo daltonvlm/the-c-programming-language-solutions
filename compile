@@ -1,0 +1,23 @@
+#!/bin/bash
+
+CC="cc -ansi -pedantic"
+
+compile() {
+	if [ $# -gt 0 ]; then
+		CMD=$CC
+		for FILE in $@; do
+			[ -f "$FILE" ] && CMD="$CMD $FILE" || echo "$FILE not found"
+		done
+		[ "$CMD" != "$CC" ] && $CMD -lm 
+	fi
+}
+
+main() {
+	if [ $# -gt 0 ]; then
+		compile $@
+	else
+		compile "test.c"
+	fi
+}
+
+main $@

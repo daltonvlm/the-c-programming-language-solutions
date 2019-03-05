@@ -123,7 +123,7 @@ int getop(char s[], int len)
 	if (isdigit(c))		/* collect integer part */
 		while (isdigit(s[++i] = c = getch()) && i < len - 1)
 			;
-	if (c == '.')		/* collect fraction part */
+	if (i < len - 1 && c == '.')		/* collect fraction part */
 		while (isdigit(s[++i] = c = getch()) && i < len - 1)
 			;
 	s[i] = '\0';
