@@ -1,5 +1,6 @@
 /*
- * Modify the temperature conversion program to print a heading above the table.
+ * Modify the temperature conversion program to print a heading above the 
+ * table.
  */
 
 #include <stdio.h>

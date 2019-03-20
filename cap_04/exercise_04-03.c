@@ -1,6 +1,7 @@
 /*
- * Given the basic framework, it is straightforward to extend the calculator. Add
- * the modulus (%) operator and provisions for negative numbers.
+ * Given the basic framework, it is straightforward to extend the 
+ * calculator. Add the modulus (%) operator and provisions for negative 
+ * numbers.
  */
 
 #include <stdio.h>

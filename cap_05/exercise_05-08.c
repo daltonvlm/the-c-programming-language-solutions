@@ -1,5 +1,6 @@
 /*
- * There is no error checking in day_of_year or month_day. Remedy this defect.
+ * There is no error checking in day_of_year or month_day. Remedy this
+ * effect.
  */
 
 static char daytab[2][13] = {
@@ -12,12 +13,11 @@ int day_of_year(int year, int month, int day)
 {
     int i, leap;
 
-
-    leap = !(year % 4) && (year % 100) || !(year % 400);
-
-    if (month < 1 || month > 12 || day < 1 || day > daytab[leap][month])
+    leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    if (month < 1 || month > 12)
         return -1;
-
+    if (day < 1 || day > daytab[leap][month])
+        return -1;
     for (i = 1; i < month; i++)
         day += daytab[leap][i];
     return day;
@@ -28,15 +28,13 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 {
     int i, leap;
 
-    leap = !(year % 4) && (year % 100) || !(year%400);
-
-    if (yearday < 1 || yearday > (leap ? 366 : 365)) {
+    leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    if (yearday < 1 || leap && yearday > 366 || yearday > 365) {
         *pmonth = -1;
         *pday = -1;
         return;
     }
-
-    for (i = 1; i < 13 && yearday > daytab[leap][i]; i++)
+    for (i = 1; yearday > daytab[leap][i]; i++)
         yearday -= daytab[leap][i];
     *pmonth = i;
     *pday = yearday;

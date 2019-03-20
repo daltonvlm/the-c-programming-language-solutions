@@ -1,6 +1,6 @@
 /*
- * Write a function righrot(x, n) that returns the value of the integer x rotated
- * to the right by n bit positions.
+ * Write a function righrot(x, n) that returns the value of the integer x 
+ * rotated to the right by n bit positions.
  */
 
 unsigned rightrot(unsigned x, int n)

@@ -1,6 +1,6 @@
 /*
- * Adapt the ideas of printd to write a recursive version of itoa; that is, convert
- * an integer into a string by calling a recursive routine.
+ * Adapt the ideas of printd to write a recursive version of itoa; that 
+ * is, convert an integer into a string by calling a recursive routine.
  */
 
 #define abs(x) ((x) > 0 ? (x) : -(x))

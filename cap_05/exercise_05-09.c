@@ -1,5 +1,6 @@
 /*
- * Rewrite the routines day_of_year and month_day with pointers instead of indexing.
+ * Rewrite the routines day_of_year and month_day with pointers instead of
+ * indexing.
  */
 
 static char daytab[2][13] = {
@@ -13,7 +14,7 @@ int day_of_year(int year, int month, int day)
     int leap;
     char *p;
 
-    leap = !(year % 4) && (year % 100) || !(year % 400);
+    leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     p = *(daytab + leap);
     while (--month > 0)
         day += *++p;
@@ -24,13 +25,12 @@ int day_of_year(int year, int month, int day)
 void month_day(int year, int yearday, int *pmonth, int *pday)
 {
     int leap;
-    char *p, *q, *r;
+    char *p;
 
-    leap = !(year % 4) && (year % 100) || !(year%400);
-    p = q = *(daytab + leap);
-    r = p + 13;
-    while (++q < r && yearday > *q)
-        yearday -= *q;
-    *pmonth = q - p;
+    leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    p = *(daytab + leap);
+    while (yearday > *++p)
+        yearday -= *p;
+    *pmonth = p - *(daytab + leap);
     *pday = yearday;
 }

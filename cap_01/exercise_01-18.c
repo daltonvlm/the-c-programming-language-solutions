@@ -1,6 +1,6 @@
 /*
- * Write a program to remove trainling blanks and tabs from each line of input, and
- * to delete entirely blank lines.
+ * Write a program to remove trainling blanks and tabs from each line of 
+ * input, and to delete entirely blank lines.
  */
 
 #include <stdio.h>

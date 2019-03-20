@@ -1,6 +1,6 @@
 /*
- * Write a getfloat, the floating-point analog of getint. What type does getfloat
- * return as its function value?
+ * Write a getfloat, the floating-point analog of getint. What type does 
+ * getfloat return as its function value?
  */
 
 #include <stdio.h>

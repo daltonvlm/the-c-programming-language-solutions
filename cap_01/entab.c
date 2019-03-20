@@ -1,40 +1,30 @@
 #include <stdio.h>
 
-#define TABSTOP 4
-
-int isblank(char c);
+#define TABSTOP 8
 
 main()
 {
-    int c, i, nblanks, left;
+    int c, col, nb;
 
-    i = 0;
-    nblanks = 0;
-    while ((c = getchar()) != EOF) {
-        if ('\n' == c) {
-            i = 0;
-            nblanks = 0;
-            putchar(c);
-        } else if (isblank(c)) {
-            nblanks++;
-            left = ((i + nblanks) % TABSTOP);
-            if (0 == left) {
+    nb = 0;
+    for (col = 1; (c = getchar()) != EOF; col++)
+        if (' ' == c) {
+            nb++;
+            if (col % TABSTOP == 0) {
+                nb = 0;
+                col += TABSTOP - (col % TABSTOP);
                 putchar('\t');
-                i += nblanks;
-                nblanks = 0;
             }
+        } else if ('\t' == c) {
+            nb = 0;
+            col += TABSTOP - (col % TABSTOP);
+            putchar('\t');
         } else {
-            i += nblanks + 1;
-            for (; nblanks > 0; nblanks--) {
+            for (; nb; nb--)
                 putchar(' ');
-            }
             putchar(c);
+            if ('\n' == c)
+                col = 0;
         }
-    }
-    return 0;
 }
 
-int isblank(char c)
-{
-    return ' ' == c;
-}

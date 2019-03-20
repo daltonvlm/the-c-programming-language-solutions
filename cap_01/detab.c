@@ -1,27 +1,22 @@
 #include <stdio.h>
 
-#define TABSTOP 4
+#define TABSTOP 8
 
 main()
 {
-    int i, j, c, left;
+	int col, c, nb;
 
-    i = 0;
-    while ((c = getchar()) != EOF) {
-        if ('\t' == c) {
-            left = TABSTOP - (i % TABSTOP);
-            for (j = 0; j < left; j++) {
-                putchar(' ');
-            }
-            i += left;
-        } else {
-            if ('\n' != c) {
-                i++;
-            } else {
-                i = 0;
-            }
-            putchar(c);
-        }
-    }
-    return 0;
+	for (col = 1; (c = getchar()) != EOF; col++) {
+		if ('\t' == c) {
+			nb = TABSTOP - (col % TABSTOP) + 1;
+			col += nb - 1;
+			while (nb--)
+				putchar(' ');
+		} else {
+			if ('\n' == c)
+				col = 0;
+			putchar(c);
+		}
+	}
+	return 0;
 }
