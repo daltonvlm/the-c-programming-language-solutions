@@ -1,24 +1,24 @@
 #include <stdlib.h>
-#include "syscalls.h"
+#include "kr_syscalls.h"
 
-/* _flushbuf: allocate and flush input buffer */
-int _flushbuf(int x, FILE *fp)
+/* _kr_flushbuf: allocate and flush input buffer */
+int _kr_flushbuf(int x, kr_FILE *fp)
 {
 	int cnt, bufsize;
 
 	if ((fp->flag & (_WRITE | _EOF | _ERR)) != _WRITE)
-		return EOF;
-	bufsize = fp->flag & _UNBUF ? 1 : BUFSIZ;
-	if (NULL == fp->base) {
-		if (NULL == (fp->base = (char *) malloc(bufsize))) {
+		return kr_EOF;
+	bufsize = fp->flag & _UNBUF ? 1 : kr_BUFSIZ;
+	if (kr_NULL == fp->base) {
+		if (kr_NULL == (fp->base = (char *) malloc(bufsize))) {
 			fp->flag |= _ERR;
-			return EOF;
+			return kr_EOF;
 		}
 	} else {
 		cnt = (int) (fp->ptr - fp->base);
 		if (write(fp->fd, fp->base, cnt) != cnt) {
 			fp->flag |= _ERR;
-			return EOF;
+			return kr_EOF;
 		}
 	}
 	fp->ptr = fp->base;

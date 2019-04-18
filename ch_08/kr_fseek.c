@@ -1,7 +1,7 @@
-#include "syscalls.h"
+#include "kr_syscalls.h"
 
-/* fseek: sets the file position indicator for the stream pointed to by fp */
-int fseek(FILE *fp, long offset, int origin)
+/* kr_fseek: sets the file position indicator for the stream pointed to by fp */
+int kr_fseek(kr_FILE *fp, long offset, int origin)
 {
 	int status, cnt;
 
@@ -15,9 +15,9 @@ int fseek(FILE *fp, long offset, int origin)
 		cnt = fp->ptr - fp->base;
 		fp->cnt = 0;
 		if (write(fp->fd, fp->base, cnt) != cnt)
-			status = EOF;
-		if (status != EOF)
+			status = kr_EOF;
+		if (status != kr_EOF)
 			status = lseek(fp->fd, offset, origin);
 	}
-	return status != EOF ? 0 : EOF;
+	return status != kr_EOF ? 0 : kr_EOF;
 }

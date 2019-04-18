@@ -1,14 +1,14 @@
 #include <stdlib.h>
-#include "syscalls.h"
+#include "kr_syscalls.h"
 
-extern int fflush(FILE *);
+extern int kr_fflush(kr_FILE *);
 
-/* fclose: close file */
-int fclose(FILE *fp)
+/* kr_fclose: close file */
+int kr_fclose(kr_FILE *fp)
 {
 	int status;
 
-	status = fflush(fp);
+	status = kr_fflush(fp);
 	status |= close(fp->fd);
 	free(fp->base);
 	fp->cnt = 0;
